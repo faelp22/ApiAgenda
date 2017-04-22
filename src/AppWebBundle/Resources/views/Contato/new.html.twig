@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function () {
+            $("#contato_telefone").mask("(99) 999-999-999");
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h1>Contato creation</h1>
+    <form method="post" name="contato">
+    <div id="contato">
+        <div class="form-group">
+            <label class="required" for="contato_nome">
+                Nome
+            </label>
+            <input class="form-control" id="contato_nome" maxlength="150" name="contato[nome]" required="required" type="text"/>
+        </div>
+        <div class="form-group">
+            <label class="required" for="contato_email">
+                Email
+            </label>
+            <input class="form-control" id="contato_email" maxlength="150" name="contato[email]" required="required" type="email"/>
+        </div>
+        <div class="form-group">
+            <label class="required" for="contato_telefone">
+                Telefone
+            </label>
+            <input class="form-control" id="contato_telefone" maxlength="14" name="contato[telefone]" required="required" type="text"/>
+        </div>
+        <input id="contato_csrf_token" name="contato[csrf_token]" type="hidden" value="{{ csrf_token('authenticate') }}" />
+    </div>
+    <div class="form-group">
+        <div class="btn-group">
+            <a href="{{ url('contato_index') }}" class="btn btn-sm btn-info"><i class="fa fa-chevron-left"></i> &nbsp; Voltar</a>
+            <button type="submit" value="Create" class="btn btn-sm btn-success"><i class="fa fa-save"></i> &nbsp;Salvar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

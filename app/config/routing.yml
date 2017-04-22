@@ -1,0 +1,12 @@
+app_web:
+    resource: "@AppWebBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+api:
+    resource: "@ApiBundle/Controller/"
+    type:     annotation
+    prefix:   /api/v1/
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"

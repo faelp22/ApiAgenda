@@ -1,0 +1,82 @@
+{% spaceless %}
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+        <head>
+            <meta charset="utf-8"/>
+            <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+            <meta content="width=device-width, initial-scale=1" name="viewport"/>
+            <meta content="" name="description"/>
+            <meta content="Isael Sousa" name="author"/>
+            <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon"/>
+            <title>{% block title %}Web Agenda{% endblock %}</title>
+            {% block stylesheets %}
+                <link href="{{ asset('/public/lib/css/all-libs.min.css') }}" rel="stylesheet"/>
+                <link href="{{ asset('/public/dist/style.min.css') }}" rel="stylesheet"/>
+            {% endblock %}
+            <!--script type="text/javascript">var URLBASE = URLBASE}}";</script -->
+        </head>
+        <body>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ url('homepage') }}"><img src="/public/imagens/calendar-512.png" width="50"></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('homepage') }}"><span class="glyphicon glyphicon-th"></span> Dashboard</a></li>
+                            <li><a href="{{ url('contato_index') }}"><span class="glyphicon glyphicon-book"></span> Contatos</a></li>
+                            <li><a href="{{ url('atividade_index') }}"><span class="glyphicon glyphicon-list"></span> Tarefaz</a></li>
+                            <li><a href="{{ url('compromisso_index') }}"><span class="glyphicon glyphicon-flag"></span> Compromisos</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Configurações</a></li>
+                                {% endif %}
+                            <li><a href="{{ url('homepage') }}logout"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav><!-- End Fixed navbar -->
+            <div class="container conteudo-root">
+                {% block body %}
+                {% endblock %}
+            </div><!-- end page-box-content -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <h4 class="footer-text">Agenda - 2017 &copy; Todos os direitos reservados</h4>
+                    </div>
+                </div>
+            </footer>
+            {% block javascripts %}
+                <script src="{{ asset('/public/lib/js/all-libs.min.js') }}"></script>
+                <script src="{{ asset('/public/dist/main.min.js') }}"></script>
+                <script type="text/javascript">
+                    function sizeOfThings() {
+                        var windowHeight = window.innerHeight;
+                        var minimo = windowHeight - windowHeight * 0.25;
+                        //$(".rolagem").css("height", windowHeight - windowHeight * 0.25);
+                        if (minimo < 650) { 
+                            $(".footer").css("position", "inherit");
+                            $(".footer").css("overflow", "auto");
+                            $(".conteudo-root").css("overflow", "auto");
+                            $("body").css("overflow", "auto");
+                            //$("html").css("overflow", "auto");
+                        }
+                    };
+                    
+                    //sizeOfThings();
+                    //window.addEventListener('resize', function () { 
+                    //    sizeOfThings();
+                    //});
+                </script>
+            {% endblock %}
+        </body>
+    </html>
+{% endspaceless %}

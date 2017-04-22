@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <a href="{{ path('contato_new') }}" class="btn btn-sm btn-primary" >Novo contato</a>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <h1 class="text-right">Lista de Contatos</h1>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contato in contatos %}
+            <tr>
+                <td><a href="{{ path('contato_show', { 'id': contato.id }) }}">{{ contato.nome }}</a></td>
+                <td>{{ contato.email }}</td>
+                <td>{{ contato.telefone }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="{{ path('contato_show', { 'id': contato.id }) }}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> &nbsp;Ver</a>
+                        <a href="{{ path('contato_edit', { 'id': contato.id }) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> &nbsp; Editar</a>
+                        <a href="{{ url('contato_delete', {'id': contato.id }) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> &nbsp; Excluir</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

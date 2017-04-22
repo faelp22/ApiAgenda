@@ -1,0 +1,50 @@
+{
+  "name": "Agenda",
+  "version": "1.0.0",
+  "ignore": [
+    "/.*",
+    "_config.yml",
+    "CNAME",
+    "composer.json",
+    "CONTRIBUTING.md",
+    "docs",
+    "js/tests",
+    "test-infra",
+    "**/.*",
+    "build",
+    "dist/cdn",
+    "speed",
+    "*/test",
+    "*.md",
+    "AUTHORS.txt",
+    "Gruntfile.js",
+    "package.json",
+    "*/src",
+    "*/less",
+    "*/tests",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests",
+    "example",
+    "src",
+    "less"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1",
+    "bootstrap": ">= 3.2.0",
+    "components-font-awesome": ">= 4.5.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "jquery.maskedinput": "^1.4.1"
+  },
+  "authors": [
+    "Isael Sousa <faelp22@gmail.com>"
+  ],
+  "description": "sistema simples agenda",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}

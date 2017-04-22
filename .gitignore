@@ -1,8 +1,11 @@
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
+/app/sessions/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
+!app/sessions/.gitkeep
+
 
 # Email spool folder
 /app/spool/*
@@ -43,6 +46,12 @@
 
 # Composer PHAR
 /composer.phar
+composer.lock
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
+composer.lock
+
+nbproject/
+web/public/bower_components/
+web/public/node_modules/
