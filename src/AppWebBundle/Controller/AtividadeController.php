@@ -5,7 +5,7 @@ namespace AppWebBundle\Controller;
 use AppWebBundle\Entity\Atividade;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Atividade controller.
@@ -44,7 +44,7 @@ class AtividadeController extends Controller
      * @Route("/new", name="atividade_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -103,7 +103,7 @@ class AtividadeController extends Controller
      * @Route("/{id}/edit", name="atividade_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Atividade $atividade)
+    public function editAction(Atividade $atividade)
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -117,6 +117,7 @@ class AtividadeController extends Controller
             
             $atividade->setNome($dados['atividade']['nome']);
             $atividade->setDescricao($dados['atividade']['descricao']);
+            $atividade->setSync(0);
 
             if(!empty($date)) {
                 $atividade->setPrazo(new \DateTime($date));

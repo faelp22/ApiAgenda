@@ -5,7 +5,7 @@ namespace AppWebBundle\Controller;
 use AppWebBundle\Entity\Contato;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Contato controller.
@@ -44,7 +44,7 @@ class ContatoController extends Controller
      * @Route("/new", name="contato_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -98,7 +98,7 @@ class ContatoController extends Controller
      * @Route("/{id}/edit", name="contato_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Contato $contato)
+    public function editAction(Contato $contato)
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -111,6 +111,7 @@ class ContatoController extends Controller
             $contato->setNome($dados['contato']['nome']);
             $contato->setEmail($dados['contato']['email']);
             $contato->setTelefone($this->limparField($dados['contato']['telefone']));
+            $contato->setSync(0);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($contato);

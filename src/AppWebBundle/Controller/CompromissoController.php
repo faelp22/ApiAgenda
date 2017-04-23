@@ -5,7 +5,7 @@ namespace AppWebBundle\Controller;
 use AppWebBundle\Entity\Compromisso;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Compromisso controller.
@@ -44,7 +44,7 @@ class CompromissoController extends Controller
      * @Route("/new", name="compromisso_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -104,7 +104,7 @@ class CompromissoController extends Controller
      * @Route("/{id}/edit", name="compromisso_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Compromisso $compromisso)
+    public function editAction(Compromisso $compromisso)
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -119,6 +119,7 @@ class CompromissoController extends Controller
             $compromisso->setNome($dados['compromisso']['nome']);
             $compromisso->setDescricao($dados['compromisso']['descricao']);
             $compromisso->setLocal($dados['compromisso']['local']);
+            $compromisso->setSync(0);
 
             if(!empty($date)) {
                 $compromisso->setData(new \DateTime($date));

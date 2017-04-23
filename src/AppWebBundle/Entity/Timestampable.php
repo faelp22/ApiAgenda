@@ -33,6 +33,13 @@ abstract class Timestampable
      * @ORM\Column(name="status", type="smallint")
      */
     private $status;
+
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="sync", type="smallint")
+     */
+    private $sync;
  
     /** 
      * Construct 
@@ -40,6 +47,7 @@ abstract class Timestampable
     public function __construct() 
     { 
         $this->status = 0;
+        $this->sync = 0;
         $this->createdAt = new \DateTime('now'); 
         $this->updatedAt = new \DateTime('now'); 
     } 
@@ -97,9 +105,7 @@ abstract class Timestampable
      * Set status
      *
      * @param integer $status
-     *
-     * @return Timestampable
-     */
+     **/
     public function setStatus($status)
     {
         $this->status = $status;
@@ -115,5 +121,27 @@ abstract class Timestampable
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param integer $sync
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return integer
+     */
+    public function getSync()
+    {
+        return $this->sync;
     }
 }

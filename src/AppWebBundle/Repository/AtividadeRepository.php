@@ -10,4 +10,50 @@ namespace AppWebBundle\Repository;
  */
 class AtividadeRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	public function findByUserId($user_id) {
+               
+        $qb = $this->createQueryBuilder('a');
+        
+        $qb->select(
+                    'a.id',
+                    'a.nome',
+                    'a.descricao',
+                    'a.prazo',
+                    'a.status',
+                    'a.sync',
+                    'a.createdAt',
+                    'a.updatedAt',
+                    'u.id as user'
+                )
+                ->join('AppWebBundle:User', 'u', "WITH", "u = a.user")
+                ->where('u.id = :id')
+                ->setParameter('id', $user_id);
+                        
+        return $qb->getQuery()->getResult();
+    }
+
+	public function findByIdAndUserId($id, $user_id) {
+               
+        $qb = $this->createQueryBuilder('a');
+        
+        $qb->select(
+                    'a.id',
+                    'a.nome',
+                    'a.descricao',
+                    'a.prazo',
+                    'a.status',
+                    'a.sync',
+                    'a.createdAt',
+                    'a.updatedAt',
+                    'u.id as user'
+                )
+                ->join('AppWebBundle:User', 'u', "WITH", "u = a.user")
+                ->where('a.id = :id')
+                ->Andwhere('u.id = :user_id')
+                ->setParameter('id', $id)
+                ->setParameter('user_id', $user_id);
+                
+        return $qb->getQuery()->getResult();
+    }
 }
